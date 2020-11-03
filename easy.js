@@ -38,4 +38,29 @@ function decode(str) {
   return newStr;
 }
 
-console.log(decode("4A3B2C1D2A") === "AAAABBBCCDAA");
+// console.log(decode("4A3B2C1D2A") === "AAAABBBCCDAA");
+
+// The edit distance between two strings refers to the minimum number of
+// character insertions, deletions, and substitutions required to change one string
+// to the other.For example, the edit distance between “kitten” and “sitting” is
+// three: substitute the “k” for “s”, substitute the “e” for “i”, and append a “g”.
+
+// Given two strings, compute the edit distance between them.
+
+function editDistance(str1, str2) {
+  let changes = 0;
+  while (str1 && str2) {
+    let char1 = str1.slice(0, 1);
+    let char2 = str2.slice(0, 1);
+    str1 = str1.slice(1);
+    str2 = str2.slice(1);
+
+    if (char1 !== char2) {
+      changes++;
+    }
+  }
+
+  return changes + Math.abs(str1.length - str2.length);
+}
+
+console.log(editDistance("abc", "abc"));
