@@ -63,4 +63,35 @@ function editDistance(str1, str2) {
   return changes + Math.abs(str1.length - str2.length);
 }
 
-console.log(editDistance("abc", "abc"));
+// console.log(editDistance("abc", "abc"));
+
+// Compute the running median of a sequence of numbers.That is, given a stream of
+// numbers, print out the median of the list so far on each new element.
+
+// Recall that the median of an even - numbered list is the average of the two middle numbers.
+
+// For example, given the sequence[2, 1, 5, 7, 2, 0, 5], your algorithm should print out:
+
+// 2
+// 1.5
+// 2
+// 3.5
+// 2
+// 2
+// 2
+
+function runningMedian(array) {
+  array = array.sort((a, b) => a - b);
+  for (let i = 0; i < array.length; i++) {
+    if (i % 2 === 0) {
+      let medianIdx = Math.floor(i / 2);
+      console.log(array[medianIdx]);
+    } else {
+      let first = Math.floor(i / 2);
+      let second = Math.floor(i / 2) + 1;
+      console.log((array[first] + array[second]) / 2);
+    }
+  }
+}
+
+console.log(runningMedian([2, 1, 5, 7, 2, 0, 5]));
