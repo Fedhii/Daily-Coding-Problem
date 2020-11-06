@@ -94,4 +94,77 @@ function runningMedian(array) {
   }
 }
 
-console.log(runningMedian([2, 1, 5, 7, 2, 0, 5]));
+// console.log(runningMedian([2, 1, 5, 7, 2, 0, 5]));
+
+// The power set of a set is the set of all its subsets.
+// Write a function that, given a set, generates its power set.
+
+// For example, given the set { 1, 2, 3 }, it should return
+// {{ }, { 1 }, { 2 }, { 3 }, { 1, 2 }, { 1, 3 }, { 2, 3 }, { 1, 2, 3 }}.
+
+// You may also use a list or array to represent a set.
+
+// var subsets = function (nums) {
+//   nums = Array.from(nums);
+//   const res = [];
+//   subsetsImpl(nums, res);
+//   return res;
+// };
+
+// function subsetsImpl(nums, res, i = 0, curr = []) {
+//   res.push(curr);
+
+//   for (; i < nums.length; i += 1) {
+//     subsetsImpl(nums, res, i + 1, curr.concat(nums[i]));
+//   }
+// }
+
+function subSets(set) {
+  let given_array = Array.from(set);
+  const answer = [];
+  buildSubsets(given_array, answer);
+  return answer;
+}
+
+function buildSubsets(nums, answer, i = 0, currentSubset = []) {
+  answer.push(currentSubset);
+
+  for (; i < nums.length; i += 1) {
+    buildSubsets(nums, answer, i + 1, currentSubset.concat(nums[i]));
+  }
+}
+
+// function powerSet(set) {
+//   let given_array = Array.from(set);
+//   let subset = new Array(given_array.length).fill(null);
+
+//   buildTree(given_array, subset, 0);
+// }
+
+// function buildTree(given_array, subset, i) {
+//   if (i >= given_array.length) printSubset(subset);
+
+//   subset[i] = null;
+//   buildTree(given_array, subset, i + 1);
+//   subset[i] = given_array[i];
+//   buildTree(given_array, subset, i + 1);
+// }
+
+// function printSubset(subset) {
+//   let newSubset = [];
+
+//   subset.forEach((sub) => {
+//     if (sub !== null) newSubset.push(sub);
+//   });
+
+//   return newSubset;
+// }
+
+let mySet = new Set();
+mySet.add(1);
+mySet.add(2);
+mySet.add(3);
+
+console.log(subSets(mySet));
+
+[1, 2, 3].sort(a);
